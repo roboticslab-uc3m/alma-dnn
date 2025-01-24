@@ -3,6 +3,7 @@ import tensorflow as tf
 from tensorflow.keras import datasets, layers, models, metrics
 
 IMAGE_SIZE = (64, 64, 3)
+BATCH_SIZE = 16
 
 X_train = np.random.rand(100, IMAGE_SIZE[0], IMAGE_SIZE[1], IMAGE_SIZE[2])  # Example image data
 y_train = np.random.rand(100, 4)  # Example target values
@@ -19,11 +20,10 @@ def define_model():
     ])
     model.compile(optimizer='adam', loss='mean_squared_error', metrics=[metrics.MeanSquaredError(), metrics.AUC()])
     return model
-
 model = define_model()
 
 # Train the model
-model.fit(X_train, y_train, epochs=10, batch_size=16)
+model.fit(X_train, y_train, epochs=10, batch_size=BATCH_SIZE)
 
 # Example prediction
 # X_test should be your test images
