@@ -5,9 +5,6 @@ from tensorflow.keras import datasets, layers, models, metrics
 IMAGE_SIZE = (64, 64, 3)
 BATCH_SIZE = 16
 
-X_train = np.random.rand(100, IMAGE_SIZE[0], IMAGE_SIZE[1], IMAGE_SIZE[2])  # Example image data
-y_train = np.random.rand(100, 4)  # Example target values
-
 def define_model():
     model = models.Sequential([
         layers.Conv2D(32, (3, 3), activation='relu', input_shape=IMAGE_SIZE),
@@ -23,7 +20,12 @@ def define_model():
 model = define_model()
 
 # Train the model
-model.fit(X_train, y_train, epochs=10, batch_size=BATCH_SIZE)
+for i in range(2):
+    print("begin",i)
+    X_train = np.random.rand(BATCH_SIZE, IMAGE_SIZE[0], IMAGE_SIZE[1], IMAGE_SIZE[2])  # Example image data
+    y_train = np.random.rand(BATCH_SIZE, 4)  # Example target values
+    model.fit(X_train, y_train, epochs=10, batch_size=BATCH_SIZE)
+    print("end",i)
 
 # Example prediction
 # X_test should be your test images
