@@ -3,7 +3,7 @@ import tensorflow as tf
 from tensorflow.keras import datasets, layers, models, metrics
 
 X_train = np.random.rand(100, 64, 64, 3)  # Example image data
-y_train = np.random.rand(100)  # Example target values
+y_train = np.random.rand(100, 4)  # Example target values
 
 def define_model():
     model = models.Sequential([
@@ -13,7 +13,7 @@ def define_model():
         layers.MaxPooling2D(pool_size=(2, 2)),
         layers.Flatten(),
         layers.Dense(64, activation='relu'),
-        layers.Dense(1)  # Output layer for regression
+        layers.Dense(4)  # Output layer for regression
     ])
     model.compile(optimizer='adam', loss='mean_squared_error', metrics=[metrics.MeanSquaredError(), metrics.AUC()])
     return model
