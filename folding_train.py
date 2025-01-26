@@ -42,16 +42,21 @@ def load_images(idx_init, num_images):
     return tf.stack(list_of_arrays)
 
 # Train the model
+"""
 for idx_outer in range(NUM_TRAIN_BATCHES):
     print("* begin train batch",idx_outer)
     #j#print("** x_train")
     x_train = load_images(idx_outer*BATCH_SIZE, BATCH_SIZE)
     y_train = labels[idx_outer*BATCH_SIZE:(idx_outer+1)*BATCH_SIZE]
     #j#print("** y_train", y_train)
-    #j#doNotDo#model.fit(x_train, y_train, epochs=10, batch_size=BATCH_SIZE)
     loss = model.train_on_batch(x_train, y_train)
     print("** train loss",loss)
     print("* end train batch",idx_outer)
+"""
+
+x_train = load_images(0, NUM_TRAIN_BATCHES*BATCH_SIZE)
+y_train = labels[0:NUM_TRAIN_BATCHES*BATCH_SIZE]
+model.fit(x_train, y_train, epochs=10, batch_size=BATCH_SIZE)
 
 # Test the model
 print("* begin test")
