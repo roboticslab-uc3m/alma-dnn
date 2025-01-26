@@ -29,9 +29,9 @@ def define_model():
     return model
 model = define_model()
 
-def load_image_batch(idx_init, batch_size):
+def load_images(idx_init, num_images):
     list_of_arrays = []
-    for idx_inner in range(batch_size):
+    for idx_inner in range(num_images):
         image_name = path.join(DATASET_DIR,"image"+str(idx_init+idx_inner)+".png")
         #j#print("** list_of_arrays["+str(idx_inner)+"]", image_name)
         array = utils.img_to_array(Image.open(image_name))
@@ -45,7 +45,7 @@ def load_image_batch(idx_init, batch_size):
 for idx_outer in range(NUM_TRAIN_BATCHES):
     print("* begin train batch",idx_outer)
     #j#print("** x_train")
-    x_train = load_image_batch(idx_outer*BATCH_SIZE, BATCH_SIZE)
+    x_train = load_images(idx_outer*BATCH_SIZE, BATCH_SIZE)
     y_train = labels[idx_outer*BATCH_SIZE:(idx_outer+1)*BATCH_SIZE]
     #j#print("** y_train", y_train)
     #j#doNotDo#model.fit(x_train, y_train, epochs=10, batch_size=BATCH_SIZE)
@@ -55,7 +55,7 @@ for idx_outer in range(NUM_TRAIN_BATCHES):
 
 # Test the model
 print("* begin test")
-x_test = load_image_batch(NUM_TRAIN_BATCHES*BATCH_SIZE, NUM_TEST_BATCHES*BATCH_SIZE)
+x_test = load_images(NUM_TRAIN_BATCHES*BATCH_SIZE, NUM_TEST_BATCHES*BATCH_SIZE)
 y_test = labels[NUM_TRAIN_BATCHES*BATCH_SIZE:(NUM_TEST_BATCHES+NUM_TRAIN_BATCHES)*BATCH_SIZE]
 loss = model.test_on_batch(x_test, y_test)
 print("** test loss", loss)
