@@ -49,6 +49,9 @@ for idx_outer in range(NUM_TRAIN_BATCHES):
     print("* end train batch",idx_outer)
 
 # Example prediction
-x_test = np.random.rand(NUM_TEST_BATCHES*BATCH_SIZE, IMAGE_SIZE[0], IMAGE_SIZE[1], IMAGE_SIZE[2])  # Example test data
+print("* begin test")
+print("** x_test")
+x_test = load_image_batch(NUM_TRAIN_BATCHES*BATCH_SIZE, NUM_TEST_BATCHES*BATCH_SIZE)
 predictions = model.predict(x_test)
 print(predictions)
+print("* end test")
