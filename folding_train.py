@@ -29,20 +29,24 @@ def define_model():
     return model
 model = define_model()
 
-# Train the model
-for idx_outer in range(NUM_TRAIN_BATCHES):
-    print("* begin batch",idx_outer)
+def load_image_batch(idx_init, batch_size):
     list_of_arrays = []
-    for idx_inner in range(BATCH_SIZE):
-        image_name = path.join(DATASET_DIR,"image"+str(idx_outer*BATCH_SIZE+idx_inner)+".png")
-        print("** x_train["+str(idx_inner)+"]", image_name)
+    for idx_inner in range(batch_size):
+        image_name = path.join(DATASET_DIR,"image"+str(idx_init+idx_inner)+".png")
+        print("** list_of_arrays["+str(idx_inner)+"]", image_name)
         array = utils.img_to_array(Image.open(image_name))
         list_of_arrays.append(array)
-    x_train = tf.stack(list_of_arrays)
+    return tf.stack(list_of_arrays)
+
+# Train the model
+for idx_outer in range(NUM_TRAIN_BATCHES):
+    print("* begin train batch",idx_outer)
+    print("** x_train")
+    x_train = load_image_batch(idx_outer*BATCH_SIZE, BATCH_SIZE)
     y_train = labels[idx_outer*BATCH_SIZE:(idx_outer+1)*BATCH_SIZE]
     print("** y_train", y_train)
     model.fit(x_train, y_train, epochs=10, batch_size=BATCH_SIZE)
-    print("* end batch",idx_outer)
+    print("* end train batch",idx_outer)
 
 # Example prediction
 x_test = np.random.rand(NUM_TEST_BATCHES*BATCH_SIZE, IMAGE_SIZE[0], IMAGE_SIZE[1], IMAGE_SIZE[2])  # Example test data
