@@ -1,9 +1,14 @@
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras import datasets, layers, models, metrics
+from tensorflow.keras import datasets, layers, models, metrics, utils
 
-IMAGE_SIZE = (64, 64, 3)
+from os import path
+from PIL import Image
+
+IMAGE_SIZE = (300, 300, 3)
+IMAGE_DIR = "dataset"
 BATCH_SIZE = 16
+BATCHES = 2 # NUM IMAGES = BATCH_SIZE * BATCHES
 
 def define_model():
     model = models.Sequential([
@@ -20,12 +25,18 @@ def define_model():
 model = define_model()
 
 # Train the model
-for i in range(2):
-    print("begin",i)
-    X_train = np.random.rand(BATCH_SIZE, IMAGE_SIZE[0], IMAGE_SIZE[1], IMAGE_SIZE[2])  # Example image data
+for idx_outer in range(2):
+    print("* begin",idx_outer)
+    list_of_arrays = []
+    for idx_inner in range(BATCH_SIZE):
+        image_name = path.join(IMAGE_DIR,"image"+str(idx_outer*BATCH_SIZE+idx_inner)+".png")
+        print("** Loading", image_name)
+        array = utils.img_to_array(Image.open(image_name))
+        list_of_arrays.append(array)
+    X_train = tf.stack(list_of_arrays)
     y_train = np.random.rand(BATCH_SIZE, 4)  # Example target values
     model.fit(X_train, y_train, epochs=10, batch_size=BATCH_SIZE)
-    print("end",i)
+    print("* end",idx_outer)
 
 # Example prediction
 # X_test should be your test images
