@@ -9,7 +9,7 @@ DATASET_DIR = "dataset"
 
 IMAGE_SIZE = (300, 300, 3)
 BATCH_SIZE = 10 # 16
-NUM_TRAIN_BATCHES = 100 # NUM TRAIN_IMAGES = BATCH_SIZE * NUM_TRAIN_BATCHES
+NUM_TRAIN_BATCHES = 10 # NUM TRAIN_IMAGES = BATCH_SIZE * NUM_TRAIN_BATCHES
 NUM_TEST_BATCHES = 1 # NUM TEST_IMAGES = BATCH_SIZE * NUM_TEST_BATCHES
 
 labels = np.loadtxt(path.join(DATASET_DIR,"labels.txt"), delimiter=',', usecols=range(1,5))
@@ -35,6 +35,8 @@ def load_image_batch(idx_init, batch_size):
         image_name = path.join(DATASET_DIR,"image"+str(idx_init+idx_inner)+".png")
         #j#print("** list_of_arrays["+str(idx_inner)+"]", image_name)
         array = utils.img_to_array(Image.open(image_name))
+        #j#getMaxVal#max_val = tf.reduce_max(array, keepdims=True)
+        array /= 200.0 # normalize
         list_of_arrays.append(array)
     return tf.stack(list_of_arrays)
 
@@ -47,13 +49,21 @@ for idx_outer in range(NUM_TRAIN_BATCHES):
     #j#print("** y_train", y_train)
     #j#doNotDo#model.fit(x_train, y_train, epochs=10, batch_size=BATCH_SIZE)
     loss = model.train_on_batch(x_train, y_train)
-    print("** loss",loss)
+    print("** train loss",loss)
     print("* end train batch",idx_outer)
 
-# Example prediction
+# Test the model
 print("* begin test")
-print("** x_test")
 x_test = load_image_batch(NUM_TRAIN_BATCHES*BATCH_SIZE, NUM_TEST_BATCHES*BATCH_SIZE)
+y_test = labels[NUM_TRAIN_BATCHES*BATCH_SIZE:(NUM_TEST_BATCHES+NUM_TRAIN_BATCHES)*BATCH_SIZE]
+loss = model.test_on_batch(x_test, y_test)
+print("** test loss", loss)
+print("* end test")
+
+# Example prediction
+print("* begin prediciton")
+print("** using same x_test")
 predictions = model.predict(x_test)
 print(predictions)
-print("* end test")
+print("* end prediciton")
+
