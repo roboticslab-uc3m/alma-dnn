@@ -8,7 +8,7 @@ from PIL import Image
 DATASET_DIR = "dataset"
 
 IMAGE_SIZE = (300, 300, 3)
-BATCH_SIZE = 16
+BATCH_SIZE = 10 # 16
 NUM_TRAIN_BATCHES = 2 # NUM TRAIN_IMAGES = BATCH_SIZE * NUM_TRAIN_BATCHES
 NUM_TEST_BATCHES = 1 # NUM TEST_IMAGES = BATCH_SIZE * NUM_TEST_BATCHES
 
@@ -45,6 +45,6 @@ for idx_outer in range(NUM_TRAIN_BATCHES):
     print("* end batch",idx_outer)
 
 # Example prediction
-X_test = np.random.rand(NUM_TEST_BATCHES*BATCH_SIZE, IMAGE_SIZE[0], IMAGE_SIZE[1], IMAGE_SIZE[2])  # Example test data
-predictions = model.predict(X_test)
+x_test = np.random.rand(NUM_TEST_BATCHES*BATCH_SIZE, IMAGE_SIZE[0], IMAGE_SIZE[1], IMAGE_SIZE[2])  # Example test data
+predictions = model.predict(x_test)
 print(predictions)
