@@ -9,7 +9,7 @@ DATASET_DIR = "dataset"
 
 IMAGE_SIZE = (300, 300, 3)
 BATCH_SIZE = 10 # 16
-NUM_TRAIN_BATCHES = 2 # NUM TRAIN_IMAGES = BATCH_SIZE * NUM_TRAIN_BATCHES
+NUM_TRAIN_BATCHES = 100 # NUM TRAIN_IMAGES = BATCH_SIZE * NUM_TRAIN_BATCHES
 NUM_TEST_BATCHES = 1 # NUM TEST_IMAGES = BATCH_SIZE * NUM_TEST_BATCHES
 
 labels = np.loadtxt(path.join(DATASET_DIR,"labels.txt"), delimiter=',', usecols=range(1,5))
@@ -33,7 +33,7 @@ def load_image_batch(idx_init, batch_size):
     list_of_arrays = []
     for idx_inner in range(batch_size):
         image_name = path.join(DATASET_DIR,"image"+str(idx_init+idx_inner)+".png")
-        print("** list_of_arrays["+str(idx_inner)+"]", image_name)
+        #j#print("** list_of_arrays["+str(idx_inner)+"]", image_name)
         array = utils.img_to_array(Image.open(image_name))
         list_of_arrays.append(array)
     return tf.stack(list_of_arrays)
@@ -41,11 +41,13 @@ def load_image_batch(idx_init, batch_size):
 # Train the model
 for idx_outer in range(NUM_TRAIN_BATCHES):
     print("* begin train batch",idx_outer)
-    print("** x_train")
+    #j#print("** x_train")
     x_train = load_image_batch(idx_outer*BATCH_SIZE, BATCH_SIZE)
     y_train = labels[idx_outer*BATCH_SIZE:(idx_outer+1)*BATCH_SIZE]
-    print("** y_train", y_train)
-    model.fit(x_train, y_train, epochs=10, batch_size=BATCH_SIZE)
+    #j#print("** y_train", y_train)
+    #j#doNotDo#model.fit(x_train, y_train, epochs=10, batch_size=BATCH_SIZE)
+    loss = model.train_on_batch(x_train, y_train)
+    print("** loss",loss)
     print("* end train batch",idx_outer)
 
 # Example prediction
