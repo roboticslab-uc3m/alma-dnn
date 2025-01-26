@@ -72,4 +72,3 @@ print("** using same x_test")
 predictions = model.predict(x_test)
 print(predictions)
 print("* end prediciton")
-
