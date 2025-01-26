@@ -7,9 +7,9 @@ from PIL import Image
 
 DATASET_DIR = "dataset"
 
-IMAGE_SIZE = (300, 300, 3)
+IMAGE_SIZE = (100, 100, 1) # (100, 100, 3)
 BATCH_SIZE = 10 # 16
-NUM_TRAIN_BATCHES = 10 # NUM TRAIN_IMAGES = BATCH_SIZE * NUM_TRAIN_BATCHES
+NUM_TRAIN_BATCHES = 1000 # NUM TRAIN_IMAGES = BATCH_SIZE * NUM_TRAIN_BATCHES
 NUM_TEST_BATCHES = 1 # NUM TEST_IMAGES = BATCH_SIZE * NUM_TEST_BATCHES
 
 labels = np.loadtxt(path.join(DATASET_DIR,"labels.txt"), delimiter=',', usecols=range(1,5))
@@ -35,6 +35,7 @@ def load_image_batch(idx_init, batch_size):
         image_name = path.join(DATASET_DIR,"image"+str(idx_init+idx_inner)+".png")
         #j#print("** list_of_arrays["+str(idx_inner)+"]", image_name)
         array = utils.img_to_array(Image.open(image_name))
+        array = array[:,:,0] # (100, 100, 3) -> (100, 100)
         #j#getMaxVal#max_val = tf.reduce_max(array, keepdims=True)
         array /= 200.0 # normalize
         list_of_arrays.append(array)
