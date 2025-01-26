@@ -5,11 +5,14 @@ from tensorflow.keras import datasets, layers, models, metrics, utils
 from os import path
 from PIL import Image
 
+DATASET_DIR = "dataset"
+
 IMAGE_SIZE = (300, 300, 3)
-IMAGE_DIR = "dataset"
 BATCH_SIZE = 16
 NUM_TRAIN_BATCHES = 2 # NUM TRAIN_IMAGES = BATCH_SIZE * NUM_TRAIN_BATCHES
 NUM_TEST_BATCHES = 1 # NUM TEST_IMAGES = BATCH_SIZE * NUM_TEST_BATCHES
+
+labels = np.loadtxt(path.join(DATASET_DIR,"labels.txt"), delimiter=',', usecols=range(1,5))
 
 def define_model():
     model = models.Sequential([
@@ -30,7 +33,7 @@ for idx_outer in range(NUM_TRAIN_BATCHES):
     print("* begin batch",idx_outer)
     list_of_arrays = []
     for idx_inner in range(BATCH_SIZE):
-        image_name = path.join(IMAGE_DIR,"image"+str(idx_outer*BATCH_SIZE+idx_inner)+".png")
+        image_name = path.join(DATASET_DIR,"image"+str(idx_outer*BATCH_SIZE+idx_inner)+".png")
         print("** Loading", image_name)
         array = utils.img_to_array(Image.open(image_name))
         list_of_arrays.append(array)
