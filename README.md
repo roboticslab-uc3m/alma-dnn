@@ -6,6 +6,15 @@ Best use docker:
 ./docker/run.sh
 ```
 
+## Times
+
+- CPU:
+  - Epoch 1 (1000): 53s de los que tardó 18s en arrancar
+  - Epoch 2 (1000): 33s
+  - Epoch 3 (1000): 33s
+- GPU:
+  - Epoch 1 (1000): s de los que tardó s en arrancar
+
 ## help
 
 For datasets that do not fit into memory, there is an answer in the [Keras Documentation FAQ section](https://keras.io/getting-started/faq/#how-can-i-use-keras-with-datasets-that-dont-fit-in-memory)
