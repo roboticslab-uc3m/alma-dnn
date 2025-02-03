@@ -1,5 +1,13 @@
 # alma-dnn
 
+Best use docker:
+
+```bash
+./docker/run.sh
+```
+
+## help
+
 For datasets that do not fit into memory, there is an answer in the [Keras Documentation FAQ section](https://keras.io/getting-started/faq/#how-can-i-use-keras-with-datasets-that-dont-fit-in-memory)
 
 > You can do batch training using `model.train_on_batch(X, y)` and `model.test_on_batch(X, y)`. See the [models documentation](https://keras.io/models/sequential).
