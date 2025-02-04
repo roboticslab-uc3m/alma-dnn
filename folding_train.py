@@ -29,11 +29,12 @@ def define_model():
     return model
 model = define_model()
 
-def load_images(idx_init, num_images):
+def load_images(idx_init, num_images, verbose = False):
     list_of_arrays = []
     for idx_inner in range(num_images):
         image_name = path.join(DATASET_DIR,"image"+str(idx_init+idx_inner)+".png")
-        #j#print("** list_of_arrays["+str(idx_inner)+"]", image_name)
+        if verbose:
+            print("** list_of_arrays["+str(idx_inner)+"]", image_name)
         array = utils.img_to_array(Image.open(image_name))
         array = array[:,:,0] # (100, 100, 3) -> (100, 100)
         #j#getMaxVal#max_val = tf.reduce_max(array, keepdims=True)
@@ -60,7 +61,7 @@ model.fit(x_train, y_train, epochs=10, batch_size=BATCH_SIZE)
 
 # Test the model
 print("* begin test")
-x_test = load_images(NUM_TRAIN_BATCHES*BATCH_SIZE, NUM_TEST_BATCHES*BATCH_SIZE)
+x_test = load_images(NUM_TRAIN_BATCHES*BATCH_SIZE, NUM_TEST_BATCHES*BATCH_SIZE, True)
 y_test = labels[NUM_TRAIN_BATCHES*BATCH_SIZE:(NUM_TEST_BATCHES+NUM_TRAIN_BATCHES)*BATCH_SIZE]
 loss = model.test_on_batch(x_test, y_test)
 print("** test loss", loss)
