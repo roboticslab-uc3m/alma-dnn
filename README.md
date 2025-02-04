@@ -8,12 +8,29 @@ Best use docker:
 
 ## Times
 
-- CPU:
-  - Epoch 1 (1000): 53s de los que tardó 18s en arrancar
-  - Epoch 2 (1000): 33s
-  - Epoch 3 (1000): 33s
-- GPU:
-  - Epoch 1 (1000): s de los que tardó s en arrancar
+- CPU (add initial loading 20s time to first 37s):
+    ```bash
+    Epoch 1/10
+    1000/1000 [==============================] - 37s 36ms/step - loss: 256.7993 - mean_squared_error: 256.7993 - auc: 0.5477  
+    Epoch 2/10
+    1000/1000 [==============================] - 37s 37ms/step - loss: 87.2902 - mean_squared_error: 87.2902 - auc: 0.6495 
+    Epoch 3/10
+    1000/1000 [==============================] - 37s 37ms/step - loss: 47.6786 - mean_squared_error: 47.6786 - auc: 0.7192
+    Epoch 4/10
+    1000/1000 [==============================] - 37s 37ms/step - loss: 29.7242 - mean_squared_error: 29.7242 - auc: 0.7134
+    Epoch 5/10
+    1000/1000 [==============================] - 36s 36ms/step - loss: 19.8291 - mean_squared_error: 19.8291 - auc: 0.7192
+    Epoch 6/10
+    1000/1000 [==============================] - 36s 36ms/step - loss: 15.2807 - mean_squared_error: 15.2807 - auc: 0.7442
+    Epoch 7/10
+    1000/1000 [==============================] - 37s 37ms/step - loss: 11.6482 - mean_squared_error: 11.6482 - auc: 0.7803
+    Epoch 8/10
+    1000/1000 [==============================] - 36s 36ms/step - loss: 9.3353 - mean_squared_error: 9.3353 - auc: 0.8138 
+    Epoch 9/10
+    1000/1000 [==============================] - 37s 37ms/step - loss: 7.7828 - mean_squared_error: 7.7828 - auc: 0.7942 
+    Epoch 10/10
+    1000/1000 [==============================] - 36s 36ms/step - loss: 6.6411 - mean_squared_error: 6.6411 - auc: 0.8221
+    ```
 
 ## help
 
