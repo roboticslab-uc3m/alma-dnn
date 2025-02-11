@@ -6,6 +6,50 @@ Best use docker:
 ./docker/run.sh
 ```
 
+### Accuracy
+
+#### dataset/image10000.png
+
+```
+ground truth [58. 47. 89. 48.]
+
+DNN [54.942677  45.316486  86.94711   48.10437  ]
+
+AML
+- result:  [54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67] misses 0
+- result:  [37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53] misses 0
+- result:  [90] misses 30
+- result:  [52, 53, 54] misses 16
+```
+
+#### dataset/image10001.png
+
+```
+ground truth [52. 50.  9. 59.]
+
+DNN [52.015865  46.120808   7.902022  54.8517533 ]
+
+AML
+- result:  [44, 45, 46, 47] misses 6
+- result:  [43, 44, 45, 46, 47, 48] misses 0
+- result:  [34] misses 84
+- result:  [75] misses 104
+```
+
+#### dataset/image10004.png
+
+```
+ground truth [41. 20. 36.  9.]
+
+DNN [37.37261   16.569086  34.050407   9.787606 ]
+
+AML
+- result:  [44, 45] misses 0
+- result:  [52] misses 3
+- result:  [53, 55, 56] misses 10
+- result:  [84] misses 52
+```
+
 ## Times
 
 - CPU (add initial loading 20s time to first 37s):
