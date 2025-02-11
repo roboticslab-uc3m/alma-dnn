@@ -8,6 +8,8 @@ Best use docker:
 
 ### Accuracy
 
+Displaying [pick_x pick_y place_x place_y].
+
 #### dataset/image10000.png
 
 ```
@@ -16,10 +18,10 @@ ground truth [58. 47. 89. 48.]
 DNN [54.942677  45.316486  86.94711   48.10437  ]
 
 AML
-- result:  [54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67] misses 0
-- result:  [37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53] misses 0
-- result:  [90] misses 30
-- result:  [52, 53, 54] misses 16
+- [54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67] misses 0
+- [37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53] misses 0
+- [90] misses 30
+- [52, 53, 54] misses 16
 ```
 
 #### dataset/image10001.png
@@ -30,10 +32,10 @@ ground truth [52. 50.  9. 59.]
 DNN [52.015865  46.120808   7.902022  54.8517533 ]
 
 AML
-- result:  [44, 45, 46, 47] misses 6
-- result:  [43, 44, 45, 46, 47, 48] misses 0
-- result:  [34] misses 84
-- result:  [75] misses 104
+- [44, 45, 46, 47] misses 6
+- [43, 44, 45, 46, 47, 48] misses 0
+- [34] misses 84
+- [75] misses 104
 ```
 
 #### dataset/image10004.png
