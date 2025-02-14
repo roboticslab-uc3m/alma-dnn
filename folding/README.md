@@ -1,6 +1,6 @@
 # alma-dnn/folding
 
-Runs with files generated via <https://github.com/roboticslab-uc3m/alma-dataset>. You can directly run against <https://doi.org/10.5281/zenodo.14864392>.
+Train with labeled data generated via <https://github.com/roboticslab-uc3m/alma-dataset>. You can also directly train with the publicly available dataset <https://doi.org/10.5281/zenodo.14864392>.
 
 ## cloth2d_dnn.py
 
