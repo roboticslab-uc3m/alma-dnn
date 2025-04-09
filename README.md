@@ -1,5 +1,7 @@
 # alma-dnn
 
+Baseline deep neural network for comparison on robotic folding:
+
 - [folding](folding/)
 
 ## Acknowledgment
